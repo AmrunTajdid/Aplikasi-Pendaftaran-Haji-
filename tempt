@@ -1,0 +1,165 @@
+<!-- konten 1 -->
+<div class="container-fluid  text-center">
+  <h1>Kenapa harus kami?</h1>
+</div>
+<div class="container"  style="margin-top: 10vh; margin-bottom:20vh">
+  <div class="d-flex justify-content-between mb-3">
+    <!-- card 2 -->
+    <div>
+      <div class="card2_1">
+        <div class="container-fluid p-2 text-white text-center" style="background-color : #125C13;">
+        Berizin Resmi
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card2_2">
+        <div class="container-fluid p-2 text-white text-center" style="background-color : #125C13;">
+        Berpengalaman
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card2_3">
+        <div class="container-fluid p-2 text-white text-center" style="background-color : #125C13;">
+        Fasilitas Lengkap
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card2_4">
+        <div class="container-fluid p-2 text-white text-center" style="background-color : #125C13;">
+        Dukungan Penuh
+        </div>
+      </div>
+    </div>
+    <!-- card 2 -->
+  </div>
+</div>
+<!-- konten 1 -->
+
+<!-- css -->
+
+/* card 2_1 */
+.card2_1 {
+  box-sizing: border-box;
+  width: 190px;
+  height: 254px;
+  background-image: url("Assets/Images/card2_1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: 0px 0px 10px 5px  rgba(0, 0, 0, 0.205);
+  backdrop-filter: blur(6px);
+  border-radius: 17px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  font-weight: bolder;
+  color: black;
+}
+
+.card2_1:hover {
+  transform: scale(1.05);
+}
+
+.card2_1:active {
+  transform: scale(0.95) rotateZ(1.7deg);
+}
+/* card 2_1 */
+
+/* card 2_2 */
+.card2_2 {
+  box-sizing: border-box;
+  width: 190px;
+  height: 254px;
+  background-image: url("Assets/Images/card2_2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: 0px 0px 10px 5px  rgba(0, 0, 0, 0.205);
+  backdrop-filter: blur(6px);
+  border-radius: 17px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  font-weight: bolder;
+  color: black;
+}
+
+.card2_2:hover {
+  transform: scale(1.05);
+}
+
+.card2_2:active {
+  transform: scale(0.95) rotateZ(1.7deg);
+}
+/* card 2_2 */
+
+  /* card 2_3 */
+.card2_3 {
+  box-sizing: border-box;
+  width: 190px;
+  height: 254px;
+  background-image: url("Assets/Images/card2_3.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: 0px 0px 10px 5px  rgba(0, 0, 0, 0.205);
+  backdrop-filter: blur(6px);
+  border-radius: 17px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  font-weight: bolder;
+  color: black;
+}
+
+.card2_3:hover {
+  transform: scale(1.05);
+}
+
+.card2_3:active {
+  transform: scale(0.95) rotateZ(1.7deg);
+}
+/* card 2_3 */
+
+/* card 2_4 */
+.card2_4 {
+  box-sizing: border-box;
+  width: 190px;
+  height: 254px;
+  background-image: url("Assets/Images/card2_4.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: 0px 0px 10px 5px  rgba(0, 0, 0, 0.205);
+  backdrop-filter: blur(6px);
+  border-radius: 17px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  font-weight: bolder;
+  color: black;
+}
+
+.card2_4:hover {
+  transform: scale(1.05);
+}
+
+.card2_4:active {
+  transform: scale(0.95) rotateZ(1.7deg);
+}
+/* card 2_4 */
