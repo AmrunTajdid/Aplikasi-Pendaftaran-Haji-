@@ -1,542 +1,197 @@
-<!-- session -->
-<?php
-include '../koneksi.php';
-
-// mengaktifkan session
-session_start();
-
-// cek apakah user telah login, jika belum login maka di alihkan ke halaman login
-if ($_SESSION['status'] != "login") {
-    header("location:landingPage.php");
-}
-?>
-<!-- session -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- bootstrap link -->
-    <link rel="stylesheet" href="../Assets/css/bootstrap.min.css">
-    <script src="../Assets/js/bootstrap.min.js"></script>
-    <!-- bootstrap link -->
-    <!-- other css -->
-    <link rel="stylesheet" href="styleAdmin.css">
-    <!-- other css -->
+  <title>Multazam sinar surya</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- bootstrap link -->
+  <link rel="stylesheet" href="../../Assets/css/bootstrap.min.css">
+  <script src=".../../../../Assets/js/bootstrap.min.js"></script>
+  <!-- bootstrap link -->
+  <!-- other css -->
+  <link rel="stylesheet" href="styleBeforeLogin.css">
+  <!-- other css -->
 </head>
 
 <body>
-    <!-- header -->
-    <header class="py-3 mb-4 border-bottom shadow">
-        <div class="container-fluid align-items-center d-flex">
-            <div class="flex-shrink-1">
-                <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-dark text-decoration-none">
-                    <i class="bi bi-bootstrap fs-2 text-dark"></i>
-                </a>
-            </div>
-            <div class="flex-grow-1 d-flex align-items-center">
-                <form class="w-100 me-3">
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-sm navbar-dark mb-4 fixed-top" style="background-color: #F4A442;">
+    <div class="container">
+      <a class="navbar-brand" href="javascript:void(0)" style="color:black;">Multazam Sinar Surya</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
 
-                </form>
-                <div class="flex-shrink-0 dropdown">
-                    <a href="logout.php" class="btn btn-primary btn-sm">Logout</a>
-                </div>
+        </ul>
+        <div class="d-flex justify-content-between">
+          <!-- button login -->
+          <button class="cssbuttons-io-button" data-bs-toggle="modal" data-bs-target="#login"> Masuk
+            <div class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="none" d="M0 0h24v24H0z"></path>
+                <path fill="currentColor" d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"></path>
+              </svg>
             </div>
+          </button>
+          <!-- button login -->
         </div>
-    </header>
-    <!-- header -->
-
-    <!-- konten -->
-    <div class="container-fluid">
-        <div class="row">
-            <!-- menu -->
-            <div class="col-3">
-                <div class="card shadow" style="height: 80vh;">
-                    <div class="card-body">
-                        <ul class="nav nav-pills flex-column">
-                            <!-- menu 1 -->
-                            <li class="nav-item">
-                                <a class="nav-link active" data-bs-toggle="pill" href="#data_user">Data user</a>
-                            </li>
-                            <!-- menu 1 -->
-
-                            <!-- menu 2 -->
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="pill" href="#data_pendaftaran">Data Pendaftaran</a>
-                            </li>
-                            <!-- menu 2 -->
-
-                            <!-- menu 3 -->
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="pill" href="#verifikasi">Verifikasi</a>
-                            </li>
-                            <!-- menu 3 -->
-
-
-                            <!-- menu 4  -->
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="pill" href="#jadwal">Jadwal</a>
-                            </li>
-                            <!-- menu 4  -->
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- menu -->
-
-            <!-- konten -->
-            <div class="col-8">
-                <div class="tab-content">
-                    <!-- konten 1 -->
-                    <div class="tab-pane container p-4 active" id="data_user">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Username</th>
-                                    <th scope="col">ID User</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                include '../koneksi.php';
-                                $no = 1;
-                                $query = mysqli_query($conn, "SELECT * FROM tb_user");
-                                if (mysqli_num_rows($query) > 0) {
-                                    // output data of each row
-                                    while ($row = mysqli_fetch_assoc($query)) {
-                                ?>
-                                        <tr>
-                                            <th scope="row"><?php echo $no++; ?></th>
-                                            <td><?php echo $row['email'] ?></td>
-                                            <td><?php echo $row['username'] ?></td>
-                                            <td><?php echo $row['id_user'] ?></td>
-                                    <?php
-                                    }
-                                } else {
-                                    echo "0 results";
-                                }
-                                    ?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- konten 1 -->
-
-                    <!-- konten 2 -->
-                    <div class="tab-pane container p-4 fade" id="data_pendaftaran">
-                        <ul class="nav nav-pills">
-                            <!-- menu 1 -->
-                            <li class="nav-item">
-                                <a class="nav-link active" data-bs-toggle="pill" href="#haji">Haji</a>
-                            </li>
-                            <!-- menu 1 -->
-
-                            <!-- menu 2 -->
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="pill" href="#umrah">Umrah</a>
-                            </li>
-                            <!-- menu 2 -->
-
-                            <!-- menu 3 -->
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="pill" href="#umrahPlus">Umrah Plus</a>
-                            </li>
-                            <!-- menu 3 -->
-                        </ul>
-
-                        <!-- Tab panes -->
-                        <div class="tab-content p-2">
-                            <!-- konten 1 -->
-                            <div class="tab-pane container active" id="haji">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Nama lengkap</th>
-                                            <th scope="col">Id Pendaftaran</th>
-                                            <th scope="col">Tanggal Pendaftaran</th>
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        include '../koneksi.php';
-                                        $no = 1;
-                                        $query = mysqli_query($conn, "SELECT * FROM tb_pendaftaran WHERE pendaftaran = 'Haji'");
-                                        if (mysqli_num_rows($query) > 0) {
-                                            // output data of each row
-                                            while ($row = mysqli_fetch_assoc($query)) {
-                                        ?>
-                                                <tr>
-                                                    <th scope="row"><?php echo $no++; ?></th>
-                                                    <td><?php echo $row['nama_lengkap'] ?></td>
-                                                    <td><?php echo $row['id_pendaftaran'] ?></td>
-                                                    <td><?php echo $row['tanggal_pendaftaran'] ?></td>
-                                                    <td>
-                                                        <a href="After Login/detailPendaftaran.php?id_pendaftaran=<?php echo $row['id_pendaftaran']; ?>" target="_blank" class="btn btn-primary btn-sm">Detail</a>
-                                                    </td>
-                                            <?php
-                                            }
-                                        } else {
-                                            echo "0 results";
-                                        }
-                                            ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- konten 1 -->
-
-                            <!-- konten 2 -->
-                            <div class="tab-pane container fade" id="umrah">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Nama lengkap</th>
-                                            <th scope="col">Id Pendaftaran</th>
-                                            <th scope="col">Tanggal Pendaftaran</th>
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        include '../koneksi.php';
-                                        $no = 1;
-                                        $query = mysqli_query($conn, "SELECT * FROM tb_pendaftaran WHERE pendaftaran = 'Umrah' ");
-                                        if (mysqli_num_rows($query) > 0) {
-                                            // output data of each row
-                                            while ($row = mysqli_fetch_assoc($query)) {
-                                        ?>
-                                                <tr>
-                                                    <th scope="row"><?php echo $no++; ?></th>
-                                                    <td><?php echo $row['nama_lengkap'] ?></td>
-                                                    <td><?php echo $row['id_pendaftaran'] ?></td>
-                                                    <td><?php echo $row['tanggal_pendaftaran'] ?></td>
-                                                    <td>
-                                                        <a href="After Login/detailPendaftaran.php?id_pendaftaran=<?php echo $row['id_pendaftaran']; ?>" target="_blank" class="btn btn-primary btn-sm">Detail</a>
-                                                    </td>
-                                            <?php
-                                            }
-                                        } else {
-                                            echo "0 results";
-                                        }
-                                            ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- konten 2 -->
-
-                            <!-- konten 3 -->
-                            <div class="tab-pane container fade" id="umrahPlus">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Nama lengkap</th>
-                                            <th scope="col">Id Pendaftaran</th>
-                                            <th scope="col">Tanggal Pendaftaran</th>
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        include '../koneksi.php';
-                                        $no = 1;
-                                        $query = mysqli_query($conn, "SELECT * FROM tb_pendaftaran WHERE pendaftaran = 'Umrah Plus'");
-                                        if (mysqli_num_rows($query) > 0) {
-                                            // output data of each row
-                                            while ($row = mysqli_fetch_assoc($query)) {
-                                        ?>
-                                                <tr>
-                                                    <th scope="row"><?php echo $no++; ?></th>
-                                                    <td><?php echo $row['nama_lengkap'] ?></td>
-                                                    <td><?php echo $row['id_pendaftaran'] ?></td>
-                                                    <td><?php echo $row['tanggal_pendaftaran'] ?></td>
-                                                    <td>
-                                                        <a href="After Login/detailPendaftaran.php?id_pendaftaran=<?php echo $row['id_pendaftaran']; ?>" target="_blank" class="btn btn-primary btn-sm">Detail</a>
-                                                    </td>
-                                            <?php
-                                            }
-                                        } else {
-                                            echo "0 results";
-                                        }
-                                            ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- konten 3 -->
-                        </div>
-                    </div>
-                    <!-- konten 2 -->
-
-                    <!-- konten 3 -->
-                    <div class="tab-pane container p-4 fade" id="verifikasi">
-
-                        <ul class="nav nav-pills">
-                            <!-- menu 1 -->
-                            <li class="nav-item">
-                                <a class="nav-link active" data-bs-toggle="tab" href="#verifikasiData">Verifikasi data</a>
-                            </li>
-                            <!-- menu 1 -->
-
-                            <!-- menu 2 -->
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#verifikasiPembayaran">Verifikasi pembayaran</a>
-                            </li>
-                            <!-- menu 2 -->
-                        </ul>
-                        <div class="tab-content p-2">
-                            <div class="tab-pane container active" id="verifikasiData">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">No</th>
-                                             <th scope="col">Nama</th>
-                                            <th scope="col">Id Pendaftaran</th>
-                                            <th scope="col">Jenis Pendaftaran</th>
-                                            <th scope="col">Id User</th>
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        include '../koneksi.php';
-                                        $queryPendaftaran = mysqli_query($conn, "SELECT * FROM tb_pendaftaran WHERE verifikasi_data = 'not' ");
-                                        $no = 1;
-                                        if (mysqli_num_rows($queryPendaftaran) > 0) {
-                                            // output data of each row
-                                            while ($row = mysqli_fetch_assoc($queryPendaftaran)) {
-                                        ?>
-                                                <tr>
-                                                    <th scope="row"><?php echo $no++; ?></th>
-                                                    <td><?php echo $row['nama_lengkap'] ?></td>
-                                                    <td><?php echo $row['id_pendaftaran'] ?></td>
-                                                    <td><?php echo $row['pendaftaran'] ?></td>
-                                                    <td><?php echo $row['id_user'] ?></td>
-                                                    <td><a href="After Login/verifikasiPendaftaran.php?id_pendaftaran=<?php echo $row['id_pendaftaran']; ?>" class="btn btn-primary btn-sm" target="_blank">Verifikasi</td></a>
-                                                </tr>
-
-                                        <?php
-                                            }
-                                        } else {
-                                            echo "0 results";
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="tab-pane container fade" id="verifikasiPembayaran">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Id Pembayaran</th>
-                                            <th scope="col">Id User</th>
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        include '../koneksi.php';
-                                        $queryPembayaran = mysqli_query($conn, "SELECT * FROM tb_pembayaran WHERE verifikasi_pembayaran = 'not' ");
-                                        $nomer = 1;
-                                        if (mysqli_num_rows($queryPembayaran) > 0) {
-                                            // output data of each row
-                                            while ($row2 = mysqli_fetch_assoc($queryPembayaran)) {
-                                        ?>
-                                                <tr>
-                                                    <th scope="row"><?php echo $nomer++; ?></th>
-                                                    <td><?php echo $row2['id_pembayaran'] ?></td>
-                                                    <td><?php echo $row2['id_user'] ?></td>
-                                                    <td><a href="After Login/verifikasiPembayaran.php?id_pendaftaran=<?php echo $row2['id_pendaftaran']; ?>" class="btn btn-primary btn-sm" target="_blank">Verifikasi</td></a>
-                                                </tr>
-
-                                        <?php
-                                            }
-                                        } else {
-                                            echo "0 results";
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- konten 3 -->
-
-                    <!-- konten 4 -->
-                    <div class="tab-pane container p-4 fade" id="jadwal">
-
-                        <ul class="nav nav-pills">
-                            <!-- menu 1 -->
-                            <li class="nav-item">
-                                <a class="nav-link active" data-bs-toggle="tab" href="#jadwalUmrah">Jadwal keberangkatan Umrah</a>
-                            </li>
-                            <!-- menu 1 -->
-
-                            <!-- menu 2 -->
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#jadwalUmrahPlus">Jadwal keberangkatan Umrah Plus</a>
-                            </li>
-                            <!-- menu 2 -->
-                        </ul>
-
-                        <div class="tab-content p-2">
-                            <!-- konten 1 -->
-                            <div class="tab-pane container active" id="jadwalUmrah">
-                                <div class="d-grid">
-                                    <button class="btn btn-primary btn-sm btn-block mt-4 mb-2" data-bs-toggle="modal" data-bs-target="#kloter">
-                                        Buat kloter baru
-                                    </button>
-                                </div>
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Id Kloter</th>
-                                            <th scope="col">Tanggal Keberangkatan</th>
-                                            <th scope="col">Titik Kumpul</th>
-                                            <th scope="col">Tanggal Pulang</th>
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        include '../koneksi.php';
-                                        $queryUmrah = mysqli_query($conn, "SELECT * FROM tb_kloter WHERE keberangkatan = 'Umrah' ");
-                                        $no = 1;
-                                        if (mysqli_num_rows($queryUmrah) > 0) {
-                                            // output data of each row
-                                            while ($row = mysqli_fetch_assoc($queryUmrah)) {
-                                        ?>
-                                                <tr>
-                                                    <th scope="row"><?php echo $no++; ?></th>
-                                                    <td><?php echo $row['id_kloter'] ?></td>
-                                                    <td><?php echo $row['tanggal_keberangkatan'] ?></td>
-                                                    <td><?php echo $row['titik_kumpul'] ?></td>
-                                                    <td><?php echo $row['Tanggal_pulang'] ?></td>
-                                                    <td><a href="After Login/hapusKloter.php?id_kloter=<?php echo $row['id_kloter']; ?>" class="btn btn-danger btn-sm">Hapus</td></a>
-                                                </tr>
-
-                                        <?php
-                                            }
-                                        } else {
-                                            echo "0 results";
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- konten 1 -->
-
-                            <!-- konten 2 -->
-                            <div class="tab-pane container fade" id="jadwalUmrahPlus">
-                                <div class="d-grid">
-                                    <button class="btn btn-primary btn-sm btn-block mt-4 mb-2" data-bs-toggle="modal" data-bs-target="#kloter">
-                                        Buat kloter baru
-                                    </button>
-                                </div>
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">No</th>
-                                            <th scope="col">Id Kloter</th>
-                                            <th scope="col">Tanggal Keberangkatan</th>
-                                            <th scope="col">Titik Kumpul</th>
-                                            <th scope="col">Tanggal Pulang</th>
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        include '../koneksi.php';
-                                        $queryUmrah = mysqli_query($conn, "SELECT * FROM tb_kloter WHERE keberangkatan = 'Umrah Plus' ");
-                                        $no = 1;
-                                        if (mysqli_num_rows($queryUmrah) > 0) {
-                                            // output data of each row
-                                            while ($row = mysqli_fetch_assoc($queryUmrah)) {
-                                        ?>
-                                                <tr>
-                                                    <th scope="row"><?php echo $no++; ?></th>
-                                                    <td><?php echo $row['id_kloter'] ?></td>
-                                                    <td><?php echo $row['tanggal_keberangkatan'] ?></td>
-                                                    <td><?php echo $row['titik_kumpul'] ?></td>
-                                                    <td><?php echo $row['Tanggal_pulang'] ?></td>
-                                                    <td><a href="After Login/hapusKloter.php?id_kloter=<?php echo $row['id_kloter']; ?>" class="btn btn-danger btn-sm">Hapus</td></a>
-                                                </tr>
-
-                                        <?php
-                                            }
-                                        } else {
-                                            echo "0 results";
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- konten 2 -->
-                        </div>
-
-                    </div>
-                    <!-- konten 4 -->
-
-                </div>
-            </div>
-            <!-- konten -->
-        </div>
+      </div>
     </div>
-    <!-- konten -->
+  </nav>
+  <!-- navbar -->
 
-    <!-- modal kloter -->
-    <div class="modal" id="kloter">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <form action="After Login/jadwalKeberangkatan.php" method="POST">
-                        <div class="mb3 mt-3">
-                            <label for="">Keberangkatan</label>
-                            <select class="form-select" id="keberangkatan" name="keberangkatan">
-                                <option value="Umrah">Umrah</option>
-                                <option value="Umrah Plus">Umrah Plus</option>
-                            </select>
-                        </div>
-                        <div class="mb-3 mt-3">
-                            <label for="tanggalBerangkat">Tanggal Keberangkatan</label>
-                            <input type="date" class="form-control" id="tanggalBerangakat" name="tanggalBerangkat">
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" id="titikKumpul" placeholder="Titik kumpul" name="titikKumpul">
-                        </div>
-                        <div class="mb-3">
-                            <label for="tanggalPulang">Tanggal Kepulangan</label>
-                            <input type="date" class="form-control" id="tanggalPulang" name="tanggalPulang">
-                        </div>
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary btn-block">Buat Jadwal Baru</button>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                </div>
-
-            </div>
+  <!-- header -->
+  <div class="container" style="margin-top: 15vh; margin-bottom:20vh">
+    <div class="d-flex justify-content-between mb-3">
+      <div>
+        <h1>Kami wujudkan impian anda!</h1>
+        <h3>untuk pergi ke tanah suci</h3>
+      </div>
+      <div>
+        <!-- card header -->
+        <div class="cardHeader">
+          <div class="first-content">
+          </div>
+          <div class="second-content">
+          </div>
         </div>
+        <!-- card header-->
+      </div>
     </div>
-    <!-- modal kloter -->
+  </div>
+  <!-- header -->
+
+  <!-- konten 1 -->
+  <div class="container-fluid  text-center">
+    <h1>Produk</h1>
+  </div>
+  <div class="container" style="margin-top: 10vh; margin-bottom:20vh">
+    <div class="d-flex justify-content-between mb-3">
+      <!-- card konten 1-->
+      <div>
+        <div class="cardContent1">
+          <div class="image1"></div>
+          <div class="content">
+            <p class="text-1">
+              Haji Regular
+            </p>
+
+            <div class="text-2">
+              <h5>Fasilitas</h5>
+              <p>- Hotel Bintang 5</p>
+              <p>- Maskapai Garuda Indonesia</p>
+              <p>- Makan 3x</p>
+              <p>- Manasik Haji</p>
+            </div>
+            <p class="date">
+              Dapatkan diskon sampai 25% *
+            </p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="cardContent1">
+          <div class="image2"></div>
+          <div class="content">
+            <p class="text-1">
+              Umrah Regular
+            </p>
+
+            <div class="text-2">
+              <h5>Fasilitas</h5>
+              <p>- Hotel Bintang 5</p>
+              <p>- Maskapai Garuda Indonesia</p>
+              <p>- Makan 3x</p>
+              <p>- Visa</p>
+            </div>
+            <p class="date">
+              Dapatkan diskon sampai 30% *
+            </p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="cardContent1">
+          <div class="image3"></div>
+          <div class="content">
+            <p class="text-1">
+              Umrah Plus
+            </p>
+
+            <div class="text-2">
+              <h5>Fasilitas</h5>
+              <p>- Hotel Bintang 5</p>
+              <p>- Maskapai Garuda Indonesia</p>
+              <p>- Makan 3x</p>
+              <p>- Keberangkatan di bulan Haji</p>
+            </div>
+            <p class="date">
+              dapatkan diskon sampai 45% *
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- card konten 1 -->
+    </div>
+  </div>
+  <!-- konten 1 -->
+
+
+
+  <!-- diluar tamplate -->
+
+  <!-- bottom navbar -->
+  <nav class="navbar navbar-expand-sm fixed-bottom mb-2">
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+      </ul>
+      <form class="d-flex">
+        <!-- button wa -->
+        <button class="buttonWa">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+            <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
+          </svg>
+          <span>Whatsapp</span>
+        </button>
+        <!-- button wa -->
+      </form>
+    </div>
+  </nav>
+  <!-- bottom navbar -->
+
+  <!-- Modal Login -->
+  <div class="modal" id="login">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-transparent">
+
+        <div class="form-box">
+          <form class="form" action="../User/login.php" method="POST">
+            <span class="title">MASUK</span>
+            <span class="subtitle">Buat akun gratis dengan email pribadimu!</span>
+            <div class="form-container">
+              <input type="text" class="input" placeholder="Username" id="username" name="username">
+              <input type="password" class="input" placeholder="Password" id="password" name="password">
+            </div>
+            <button type="submit" value="Login">
+              <center>Masuk</center>
+            </button>
+          </form>
+          <div class="form-section">
+            <p>Belum punya akun? <a href="Registrasi/index.php" target="_blank">Daftar Sekarang!</a> </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Modal Login -->
+
+
 </body>
 
 </html>
