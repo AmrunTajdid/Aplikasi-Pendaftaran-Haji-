@@ -1,0 +1,283 @@
+/* button menu */
+  .cssbuttons-io-button {
+    background: #125C13;
+    color: white;
+    font-family: inherit;
+    padding: 0.35em;
+    padding-left: 1.2em;
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 0.9em;
+    border: none;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0 0 1.6em -0.6em #125C13;
+    overflow: hidden;
+    position: relative;
+    height: 2.8em;
+    padding-right: 3.3em;
+  }
+  .cssbuttons-io-button .icon {
+    background: #F4A442;
+    margin-left: 1em;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.2em;
+    width: 2.2em;
+    border-radius: 0.7em;
+    box-shadow: 0.1em 0.1em 0.6em 0.2em #125C13;
+    right: 0.3em;
+    transition: all 0.3s;
+  }
+  .cssbuttons-io-button:hover .icon {
+    width: calc(100% - 0.6em);
+  }
+  .cssbuttons-io-button .icon svg {
+    width: 1.1em;
+    transition: transform 0.3s;
+    color: #125C13;
+  }
+  .cssbuttons-io-button:hover .icon svg {
+    transform: translateX(0.1em);
+  }
+  .cssbuttons-io-button:active .icon {
+    transform: scale(0.95);
+  }
+/* button login */
+
+/* header */
+/* card header */
+  .cardHeader {
+      width: 300px;
+      height: 404px;
+      background-image: url("Assets/Images/card1_1.jpg");
+      background-size: contain;
+      transition: all 0.4s;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px 5px  rgba(0, 0, 0, 0.205);
+      font-size: 30px;
+      font-weight: 900;
+  }
+  .cardHeader:hover {
+    border-radius: 15px;
+    cursor: pointer;
+    transform: scale(1.2);
+    box-shadow: 0px 0px 10px 5px  rgba(0, 0, 0, 0.205);
+    background-image: url("Assets/Images/card1_2.jpg");
+    background-size: contain;
+  }
+  .first-content {
+    height: 100%;
+    width: 100%;
+    transition: all 0.4s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    border-radius: 15px;
+  }
+  .cardHeader:hover .first-content {
+    height: 0px;
+    opacity: 0;
+  }
+  .second-content {
+    height: 0%;
+    width: 100%;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    transition: all 0.4s;
+    font-size: 0px;
+    transform: rotate(90deg) scale(-1);
+  }
+  .cardHeader:hover .second-content {
+    opacity: 1;
+    height: 100%;
+    font-size: 1.8rem;
+    transform: rotate(0deg);
+  }
+/* card header */
+/* header */
+  
+/* konten 1 */
+/* card kontent 1 */
+  .cardContent1 {
+    overflow: hidden;
+    border-radius: 0.5rem;
+    width: 350px;
+    background-color: #125C13;
+    color: #212121;
+  }
+  .image1 {
+    height: 35vh;
+    width: 100%;
+    background-image: url("Assets/Images/card3_1.jpg");
+    background-size: cover;
+  }
+  .image2 {
+    height: 35vh;
+    width: 100%;
+    background-image: url("Assets/Images/card3_2.jpg");
+    background-size: cover;
+  }
+  .image3 {
+    height: 35vh;
+    width: 100%;
+    background-image: url("Assets/Images/card3_3.jpg");
+    background-size: cover;
+  }
+  .content {
+    padding: 1rem;
+  }
+  .text-1 {
+    font-size: 2rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 1);
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 2vh;
+    margin-bottom: 5vh;
+  }
+  .text-2 {
+    font-weight: 200;
+    color: rgba(255, 255, 255, 1);
+  }
+  .action {
+    margin-top: 5vh;
+    display: inline-block;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #125C13;
+    text-decoration: none;
+    text-align: center;
+  }
+  .date {
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: rgba(156, 163, 175, 1);
+    text-align: center;
+  }
+/* card konten 1 */
+
+/* button pendaftaran */
+.buttonPendaftaran {
+  cursor: pointer;
+  position: relative;
+  padding: 5px 15px;
+  font-size: 18px;
+  color: #F4A442;
+  border: 2px solid #F4A442;
+  border-radius: 10px;
+  background-color: transparent;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  overflow: hidden;
+  width: 100%;
+}
+.buttonPendaftaran::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 100%;
+  height: 50px;
+  border-radius: inherit;
+  scale: 0;
+  z-index: -1;
+  background-color: #F4A442;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+.buttonPendaftaran:hover::before {
+  scale: 1;
+}
+.buttonPendaftaran:hover {
+  color: #125C13;
+  scale: 1;
+  box-shadow: 0 0px 20px rgba(193, 163, 98,0.4);
+}
+.buttonPendaftaran:active {
+  scale: 1;
+}
+/* button pendaftaran */
+/* konten 1 */
+
+
+
+/* diluar tamplate */
+
+/* button wa */
+  .buttonWa {
+    background: transparent;
+    position: relative;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid #128C7E;
+    border-radius: 25px;
+    outline: none;
+    overflow: hidden;
+    color: #128C7E;
+    transition: color 0.3s 0.1s ease-out;
+    text-align: center;
+    margin-right: 25px;
+  }
+  .buttonWa svg {
+    fill: #128C7E;
+    height: 25px;
+    width: 25px;
+  }
+  .buttonWa span {
+    margin: 10px;
+  }
+  .buttonWa::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    content: '';
+    border-radius: 50%;
+    display: block;
+    width: 20em;
+    height: 20em;
+    left: -5em;
+    text-align: center;
+    transition: box-shadow 0.5s ease-out;
+    z-index: -1;
+  }
+  .buttonWa:hover {
+    color: #fff;
+    border: 1px solid #128C7E;
+  }
+  .buttonWa:hover svg {
+    fill: currentColor;
+  }
+  .buttonWa:hover::before {
+    box-shadow: inset 0 0 0 10em #128C7E;
+  }
+/* button wa */
+
+
